@@ -12,4 +12,3 @@ const home = require("./routes/home") // 현재 폴더에서 라우터스 폴더
 app.use("/", home); // use -> 미들 웨어를 등록해주는 메소드
 
 module.exports = app;
-
