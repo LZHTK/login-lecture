@@ -5,9 +5,9 @@ const router = express.Router();
 
 const ctrl = require("./home.ctrl");
 
-router.get("/", ctrl.hello); 
-router.get("/login", ctrl.login);
-
+router.get("/", ctrl.output.hello); 
+router.get("/login", ctrl.output.login);
+router.post("/login", ctrl.process.login); 
 
   // 라우터의 역할은 해당 도메인으로 들어 왔을때 클라이언트의 요청을 연결하는 부분
   // /login, 뒤에 부분이 이러한 요청에 해당하는 기능을 수행하는 컨트롤러이다.
