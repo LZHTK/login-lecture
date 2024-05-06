@@ -15,5 +15,16 @@ function login() {
     id: id.value,
     psword: psword.value,
  };
- console.log(req);
+  
+ fetch("/login", {
+   method: "POST",
+   headers: {
+      "CONTENT-Type": "application/json",
+   },
+   body: JSON.stringify(req),
+ });
+
+ // rq를 통해 데이터를 서버로 보내야한다
+ // 서버와 같은 프론트는 어떠한 경로로 데이터를 주고 받을지 결정해야하는데
+ // 해당 경로에 API가 이미 만들어 져야 하는데 우리는 route에 API를 만듦
 }
