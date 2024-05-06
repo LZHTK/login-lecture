@@ -23,9 +23,18 @@ function login() {
    },
    body: JSON.stringify(req),
  }).then((res) => res.json())
-   .then(console.log);
- // 패치로 전달을 하고 서버에서 응답한 데이터를 받는 파트
+   .then((res) => {
+      if(res.success) {
+         location.href ="/";
+      } else{
+         alert(res.msg);
+      }
+   })
+   .catch((err) => {
+      console.error(new Error("로그인 중 에러 발생"));
+   });
 
+ // 패치로 전달을 하고 서버에서 응답한 데이터를 받는 파트
 }
 
  // rq를 통해 데이터를 서버로 보내야한다
