@@ -1,9 +1,6 @@
 "use strict";
 
-const users = {
-    id: ["LZHTK","이응생","아가소나"],
-    psword: ["1234", "0808","0808"],
-};
+const UserStorage = require("../../models/UserStorage");
 
 const output = {
 
@@ -20,19 +17,21 @@ const process = {
         const id = req.body.id,
          psword = req.body.psword;
 
+         
+       const users = UserStorage.getUsers("id","psword");
+
+         const response = {};
         if (users.id.includes(id)){
             const idx = users.id.indexOf(id);
             if(users.psword[idx] === psword){
-                return res.json({
-                    success: true,
-                });
+                response.success = true;
+                return res.json(response);
             }
         }
 
-        return res.json({
-            success: false,
-            msg : "로그인 실패",
-        });
+        response.success = false;
+        response.msg = " 로그인 실패";
+        return res.json(response);
     },
 };
 // 로그인이 가능하기 위해서는 프론트에서 받은 아이디와 패스워드를 서버에서 인증해야하는데
