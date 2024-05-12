@@ -1,6 +1,6 @@
 "use strict";
 
-const UserStorage = require("../../models/UserStorage");
+const User = require("../../models/User");
 
 const output = {
 
@@ -14,25 +14,13 @@ const output = {
 
 const process = {
     login: (req, res) => {
-        const id = req.body.id,
-         psword = req.body.psword;
-
-         
-       const users = UserStorage.getUsers("id","psword");
-
-         const response = {};
-        if (users.id.includes(id)){
-            const idx = users.id.indexOf(id);
-            if(users.psword[idx] === psword){
-                response.success = true;
-                return res.json(response);
-            }
-        }
-
-        response.success = false;
-        response.msg = " 로그인 실패";
-        return res.json(response);
-    },
+        const user = new User(req.body);
+        const response = user.login();
+        return res.json(response); 
+    // 클라이언트가 전달한 데이터를 갖고 있는 user라는 인스턴스를 만듦
+    // UserStorage에서 users 데이터를 쓰기위해 불러온 부분
+    // 불러온 로그인 정보를 유저를 검증하는 로직
+     },
 };
 // 로그인이 가능하기 위해서는 프론트에서 받은 아이디와 패스워드를 서버에서 인증해야하는데
 // 그러기 위해서는 서버가 해당 정보를 가져야한다. 
