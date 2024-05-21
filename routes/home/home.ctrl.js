@@ -25,6 +25,11 @@ const process = {
     // 불러온 로그인 정보를 유저를 검증하는 로직으로 유저가 로그인 처리시 
     // User로 넘어가서 처리
      },
+     register: (req, res) => {
+        const user = new User(req.body);
+        const response = user.register();
+        return res.json(response); 
+     },
 };
 // 로그인이 가능하기 위해서는 프론트에서 받은 아이디와 패스워드를 서버에서 인증해야하는데
 // 그러기 위해서는 서버가 해당 정보를 가져야한다. 

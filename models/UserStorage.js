@@ -32,6 +32,13 @@ class UserStorage {
 
      return userInfo;
    }
+   static save(userInfo) { // save가 유저의 정보이기에 userInfo로 받는다.
+     const users = this.#users;
+     users.id.push(userInfo.id);
+     users.name.push(userInfo.name);
+     users.psword.push(userInfo.psword);
+     return { success: true };
+   }
 } // 데이터베이스에 접근해서 데이터를 반환하는 작업을 하는 부분
 
 
