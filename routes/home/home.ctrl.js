@@ -16,9 +16,9 @@ const output = {
 };
 
 const process = {
-    login: (req, res) => {
+    login: async (req, res) => {
         const user = new User(req.body);
-        const response = user.login();
+        const response = await user.login();
         return res.json(response); 
     // 클라이언트가 전달한 rq 데이터를 갖고 있는 user라는 인스턴스를 만듦
     // 해당하는 body의 내용을 user가 계속 들고 다닌다.

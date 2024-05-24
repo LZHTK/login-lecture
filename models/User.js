@@ -7,13 +7,16 @@ class User {
     this.body = body;
  }
 
- login() {
+async login() {
     const client = this.body;
-    const { id, psword } = UserStorage.getUserInfo(client.id);
+    const {id, psword } = await UserStorage.getUserInfo(client.id);
     // 유저가 로그인 실행시 올바른 아이디 패스워드인지 확인을 위해
     // 클라이언트가 보낸 정보를 스토리지의 메서드로 전달하여 처리 후
     // 클래스가 그 과정을 반환하여 받아온 후 저장한다. 
-    
+    // promise를 사용할때 pending은 아직 get UserInfo가 데이터를 다 못 가져왔다는 뜻이다.
+    // 이러한 비동기적인 특성을 가진 promise를 위해 await를 사용하여
+    // 전부다 데이터가 반환될때까지 기다리게 한다.
+
     if (id) {
     if ( id === client.id && psword === client.psword) {
         return { success: true };
